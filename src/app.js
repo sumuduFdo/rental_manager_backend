@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const db_conn_str = 'mongodb://localhost:27017/'
 
 const app = express();
+const port = 5000;
 app.use(bodyParser.urlencoded({ extended: false }));
 
 /** establish mongodb connection */
@@ -14,5 +15,5 @@ mongoose
     console.log("DB connection established successfully....")
 })
 .catch((err) => {
-    console.log("[DBErr]Failed to start application..\n", err);
+    console.log("[Err]Failed to start application..\n", err);
 });
