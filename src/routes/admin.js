@@ -10,9 +10,9 @@ const adminController = require('../controllers/admin');
  * - Get Vehicle Details
  */
 
-router.post('/add-vehicle', adminController.ad);
+router.post('/add-vehicle', adminController.addVehicle);
 
-router.post('/edit-vehicle', adminController.modifyVehilce);
+router.post('/edit-vehicle', adminController.modifyVehicle);
 
 router.post('/delete-vehicle', adminController.deleteVehicle)
 

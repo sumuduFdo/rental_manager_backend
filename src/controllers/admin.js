@@ -1,6 +1,6 @@
 const Vehicle = require("../models/Vehicle");
 
-exports.addVehilce = (req, res, next) => {
+exports.addVehicle = (req, res, next) => {
   const licencePlate = req.body.licencePlate;
   const make = req.body.make;
   const model = req.body.model;
@@ -43,10 +43,8 @@ exports.addVehilce = (req, res, next) => {
   // add new vehicle to database
 };
 
-exports.deleteVehicle = (req, res, next) => {
-    
-}
+exports.deleteVehicle = (req, res, next) => {}
 
-exports.modifyVehilce = (req, res, next) => {}
+exports.modifyVehicle = (req, res, next) => {}
 
 exports
