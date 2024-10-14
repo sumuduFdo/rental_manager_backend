@@ -12,8 +12,8 @@ const adminController = require('../controllers/admin');
 
 router.post('/add-vehicle', adminController.addVehicle);
 
-router.post('/edit-vehicle', adminController.modifyVehicle);
+router.post('/modify-vehicle', adminController.updateVehicle);
 
-router.post('/delete-vehicle', adminController.deleteVehicle)
+router.post('/delete-vehicle/:vehicleId', adminController.deleteVehicle)
 
 module.exports = router;
