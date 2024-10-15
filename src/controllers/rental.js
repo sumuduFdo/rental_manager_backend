@@ -1,22 +1,22 @@
 const Vehicle = require("../models/Vehicle");
 const Rental = require("../models/Rental");
 
-exports.listAllVehicles = (req, res, next) => {
-  Vehicle.find()
-    .then((vehicles) => {
-      res.json({ success: true, error: null, data: vehicles });
+exports.listRentals = (req, res, next) => {
+  Rental.find()
+    .then((rentals) => {
+      res.json({ success: true, error: null, data: rentals });
     })
     .catch((err) => {
       console.log(`[Err] INFO: ${err}`);
-      res.status(500).json({ success: false, error: {status: err.status, message: err.message} });
+      res.status(500).json({ success: false, error: {status: err.status, message: err.message}});
     });
 };
 
-exports.getVehicleDetails = (req, res, next) => {
-  const vehicleId = req.params.vehicleId;
-  Vehicle.findById(vehicleId)
-    .then((vehicle) => {
-      res.json({ success: true, error: null, data: vehicle });
+exports.getRentalDetails = (req, res, next) => {
+  const rentalId = route.params.rentalId;
+  Rental.findById(rentalId)
+    .then((rental) => {
+      res.json({ success: true, error: null, data: rental });
     })
     .catch((err) => {
       console.log(`[Err] INFO: ${err}`);
@@ -68,29 +68,6 @@ exports.createRental = (req, res, next) => {
     .then(() => {
       console.log(`Rental created for vehicle with Id: ${vehicleId}`);
       res.status(201).json({ success: true, error: null, data: rentalData});
-    })
-    .catch((err) => {
-      console.log(`[Err] INFO: ${err}`);
-      res.status(500).json({ success: false, error: {status: err.status, message: err.message} });
-    });
-};
-
-exports.listRentals = (req, res, next) => {
-  Rental.find()
-    .then((rentals) => {
-      res.json({ success: true, error: null, data: rentals });
-    })
-    .catch((err) => {
-      console.log(`[Err] INFO: ${err}`);
-      res.status(500).json({ success: false, error: {status: err.status, message: err.message}});
-    });
-};
-
-exports.getRentalDetails = (req, res, next) => {
-  const rentalId = route.params.rentalId;
-  Rental.findById(rentalId)
-    .then((rental) => {
-      res.json({ success: true, error: null, data: rental });
     })
     .catch((err) => {
       console.log(`[Err] INFO: ${err}`);

@@ -5,7 +5,7 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const db_conn_str = 'mongodb://localhost:27017/rental_manager';
 
-const adminRoutes = require('./routes/admin');
+const vehicleRoutes = require('./routes/vehicle');
 const rentalRoutes = require('./routes/rental');
 const errorController = require('./controllers/error')
 
@@ -13,12 +13,13 @@ const app = express();
 const port = 5000;
 
 // App configurations
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.json());
+
 
 // Router configuration
-app.use('/admin', adminRoutes);
-app.use('', rentalRoutes, cors())
+app.use('/vehicles', vehicleRoutes);
+app.use('/rentals', rentalRoutes)
 
 app.use(errorController.requestNotFound);
 

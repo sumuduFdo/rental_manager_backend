@@ -5,24 +5,14 @@ const router = express.Router();
 const rentalController = require('../controllers/rental');
 
 /** User Functionality
- * - List All Vehicles
- * - Get Vehicle Details
- * - Update Vehicle Status
- * Additional
+ * - Rent vehicle -> update vehicle status to not available
  * - List all rentals
- * - Filter Rentals By
- *      - ongoing
- *      - completed
+ * - Find single rental -> by _id
  */
 
-router.get('/', rentalController.listAllVehicles);
+router.get('/add', rentalController.listRentals)
+router.get('/detils', rentalController.getRentalDetails);
 
-router.get('/vehicles', rentalController.listAllVehicles);
-router.get('/vehicles/:vehicleId', rentalController.getVehicleDetails);
-
-router.get('/rentals', rentalController.listRentals)
-router.get('/rentals/:rentalId', rentalController.getRentalDetails);
-
-router.post('/update-status', rentalController.createRental);
+router.post('/update', rentalController.createRental);
 
 module.exports = router;
