@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors')
 
 const mongoose = require('mongoose');
@@ -10,12 +9,11 @@ const rentalRoutes = require('./routes/rental');
 const errorController = require('./controllers/error')
 
 const app = express();
-const port = 5000;
+const port = 3200;
 
 // App configurations
-app.use(cors());
 app.use(express.json());
-
+app.use(cors());
 
 // Router configuration
 app.use('/vehicles', vehicleRoutes);

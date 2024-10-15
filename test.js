@@ -290,6 +290,12 @@ mongoose
     console.log("DB connection established successfully....");
     addVehicles();
   })
+  .then(() => {
+    return mongoose.connection.close()
+  })
+  .then(() => {
+    console.log('closed mongoose connection');
+  })
   .catch((err) => {
     console.log("[Err]Failed to start application..\n", err);
   }).finally(() => {
