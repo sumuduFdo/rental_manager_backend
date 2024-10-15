@@ -1,0 +1,11 @@
+.view {
+    display: none;
+}
+
+#addRes{
+    display: none;
+}
+#vehicles{
+    width: fit-content;
+    display: block;
+}

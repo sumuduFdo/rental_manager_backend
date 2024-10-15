@@ -1,0 +1,281 @@
+<html>
+
+<head>
+    <title>My App</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+
+
+    <script type="module" src="./vehicle.js"></script>
+</head>
+
+<body>
+    <select id="viewSelector">
+        <option value="" disabled selected>Select View</option>
+        <option value="add">Add Vehicle</option>
+        <option value="modify">Modify Vehicle</option>
+        <option value="delete">Delete Vehicle</option>
+    </select>
+    <hr />
+
+    <!-- Add Vehicle View -->
+    <div id="addVehicle" class="view">
+        <form method="POST" id="addVehicleForm">
+            <table>
+                <tr>
+                    <td><label class="form-label" for="licencePlate">Licence Plate</label></td>
+                    <td><input type="text" name="licencePlate" id="licencePlate" placeholder="Licence Plate" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="make">Make</label></td>
+                    <td><input type="text" id="make" name="make" placeholder="Make" required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="model">Model</label></td>
+                    <td><input type="text" id="model" name="model" placeholder="Model" required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="year">Year</label></td>
+                    <td><input type="number" id="year" name="year" placeholder="Year" min="1900" max="2024" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="transmission">Transmission</label></td>
+                    <td>
+                        <select id="transmission" name="transmission" required>
+                            <option value="" disabled selected>Select Transmission</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Semi-Automatic">Semi-Automatic</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="fuelType">Fuel Type</label></td>
+                    <td>
+                        <select id="fuelType" name="fuelType" required>
+                            <option value="" disabled selected>Select Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="engineCapacity">Engine Capacity (L)</label></td>
+                    <td><input type="text" name="engineCapacity" id="engineCapacity" placeholder="Engine Capacity"
+                            required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="vehicleType">Vehicle Type</label></td>
+                    <td>
+                        <select id="vehicleType" name="vehicleType" required>
+                            <option value="" disabled selected>Select Vehicle Type</option>
+                            <option value="Car">Car</option>
+                            <option value="Motorbike">Motorbike</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="availability">Availability</label></td>
+                    <td>
+                        <select id="availability" name="availability" required>
+                            <option value="" disabled selected>Select Availability</option>
+                            <option value="true">Available</option>
+                            <option value="false">Not Available</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="bdType">
+                    <td>
+
+                        <label class="form-label" for="bodyType">Body Type</label>
+                    </td>
+
+                    <td>
+                        <select id="bodyType" name="bodyType">
+                            <option value="" disabled selected>Select Body Type</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="Coupe">Coupe</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="Convertible">Convertible</option>
+                        </select>
+                    </td>
+
+                </tr>
+
+                <tr class="mbType">
+                    <td>
+                        <label class="form-label" for="motorBikeType">Motorbike Type</label>
+                    </td>
+
+                    <td>
+                        <select name="motorBikeType" id="motorBikeType">
+                            <option value="" disabled selected>Select Motorbike Type</option>
+                            <option value="Cruiser">Cruiser</option>
+                            <option value="Sportbike">Sportbike</option>
+                            <option value="Touring">Touring</option>
+                            <option value="Dual-Sport">Dual-Sport</option>
+                        </select>
+                    </td>
+
+                </tr>
+            </table>
+            <button type="submit">Add Vehicle</button>
+        </form>
+
+    </div>
+
+
+    <!-- Modify Vehicle View -->
+    <div id="modifyVehicle" class="view">
+        <form id="fetchVehicle">
+            <table>
+                <tr>
+                    <td>
+                        <label for="licencePlate">Licence Plate:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="licencePlate" name="licencePlate" required/>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">Fetch Vehicle</button>
+        </form>
+        
+        <form method="POST" id="modifyVehicleForm">
+            <h2>Modify Vehicle</h2>
+            <input type="text" id="modifyVehicleId" hidden>
+            <table>
+                <tr>
+                    <td><label class="form-label" for="licencePlate">Licence Plate</label></td>
+                    <td><input type="text" name="licencePlate" class="modifyLicencePlate" id="licencePlate" placeholder="Licence Plate" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="make">Make</label></td>
+                    <td><input type="text" id="make" class="modifyMake" name="make" placeholder="Make" required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="model">Model</label></td>
+                    <td><input type="text" id="model" class="modifyModel" name="model" placeholder="Model" required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="year">Year</label></td>
+                    <td><input type="number" id="year" name="year" class="modifyYear" placeholder="Year" min="1900" max="2024" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="transmission">Transmission</label></td>
+                    <td>
+                        <select id="transmission" name="transmission" class="modifyTransmission" required>
+                            <option value="" disabled selected>Select Transmission</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Semi-Automatic">Semi-Automatic</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="fuelType">Fuel Type</label></td>
+                    <td>
+                        <select id="fuelType" name="fuelType" class="modifyFuelType" required>
+                            <option value="" disabled selected>Select Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="engineCapacity">Engine Capacity (L)</label></td>
+                    <td><input type="text" name="engineCapacity" id="engineCapacity" class="modifyEngineCapacity" placeholder="Engine Capacity"
+                            required /></td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="vehicleType">Vehicle Type</label></td>
+                    <td>
+                        <select id="vehicleType" class="modifyVehicleType"  name="vehicleType" required>
+                            <option value="" disabled selected>Select Vehicle Type</option>
+                            <option value="Car">Car</option>
+                            <option value="Motorbike">Motorbike</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="form-label" for="availability">Availability</label></td>
+                    <td>
+                        <select id="availability" name="availability" class="modifyAvailability" required>
+                            <option value="" disabled selected>Select Availability</option>
+                            <option value="true">Available</option>
+                            <option value="false">Not Available</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="modifyBdType">
+                    <td>
+
+                        <label class="form-label" for="bodyType">Body Type</label>
+                    </td>
+
+                    <td>
+                        <select id="bodyType" name="bodyType" class="modifyBodyType">
+                            <option value="" disabled selected>Select Body Type</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="Coupe">Coupe</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="Convertible">Convertible</option>
+                        </select>
+                    </td>
+
+                </tr>
+
+                <tr id="modifyMbType">
+                    <td>
+                        <label class="form-label" for="motorBikeType">Motorbike Type</label>
+                    </td>
+
+                    <td>
+                        <select name="motorBikeType" id="motorBikeType" class="modifyBikeType">
+                            <option value="" disabled selected>Select Motorbike Type</option>
+                            <option value="Cruiser">Cruiser</option>
+                            <option value="Sportbike">Sportbike</option>
+                            <option value="Touring">Touring</option>
+                            <option value="Dual-Sport">Dual-Sport</option>
+                        </select>
+                    </td>
+
+                </tr>
+            </table>
+            <button type="submit">Submit Changes</button>
+        </form>
+    </div>
+
+    <!-- Delete Vehicle View -->
+    <div id="deleteVehicle" class="view">
+        <h2>Delete Vehicle</h2>
+        <form id="deleteVehicleForm">
+            <table>
+                <tr>
+                    <td>
+                        <label for="licencePlate">Licence Plate:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="licencePlate" name="licencePlate" />
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">Delete Vehicle</button>
+        </form>
+    </div>
+    <p id="result"></p>
+</body>
+
+</html>
